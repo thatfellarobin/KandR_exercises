@@ -6,7 +6,6 @@
 #define TABSTOP 30
 
 int gettline(char line[], int lim, int tab);
-int mod(int n, int m);
 
 int main()
 {
@@ -30,7 +29,7 @@ int gettline(char s[], int lim, int tab)
     {
         if (c == '\t') // Errors will occur if tab would exceed maxline
         {
-            for (j = 0; j < tab - mod(i, tab); ++j)
+            for (j = 0; j < tab - (i % tab); ++j)
                 s[i+j] = ' ';
             i = i + j - 1;
         }
@@ -46,13 +45,3 @@ int gettline(char s[], int lim, int tab)
     s[i] = '\0';
     return i;
 }
-
-int mod(int n, int m)
-{
-    int div;
-
-    div = n / m;
-
-    return n - (div * m);
-}
-
